@@ -1,0 +1,23 @@
+@import "./scss/vars";
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: $main-font;
+  background-color: $primary-light;
+  background-image: url("https://phonoteka.org/uploads/posts/2021-04/1617827478_18-p-fon-starii-list-bumagi-22.jpg");
+  // background-image: url("./assets/images/bg-pattern-top.svg"),
+  //   url("./assets/images/bg-pattern-bottom.svg");
+  // background-repeat: no-repeat;
+  // background-position: left -10% top -250px, right -30% top 250px;
+  // background-size: 50%, 60%;
+}

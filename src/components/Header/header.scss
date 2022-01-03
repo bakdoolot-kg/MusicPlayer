@@ -1,0 +1,40 @@
+@import "../../app.scss";
+
+.header {
+  max-width: 10rem;
+
+  &__logo {
+    font-size: 40px;
+    font-family: "Audiowide Regular", sans-serif;
+  }
+
+  &__list {
+    // li attr
+    &-item {
+      margin: 15px 15px;
+    }
+
+    // NavLink ссылки
+    &-link {
+      padding: 5px;
+      font-size: $main-font-size;
+      font-weight: 600;
+
+      color: #000;
+    }
+
+    [data-nameIcon="Home"] {
+      background: left center / 1.2rem no-repeat
+        url("../../assets/icons/home-icon.svg");
+      padding-left: 25px;
+      text-align: center;
+    }
+
+    [data-nameIcon="Library"] {
+      background: left center / 1.2rem no-repeat
+        url("../../assets/icons/list-icon.svg");
+      padding-left: 26px;
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,8 @@
+.mini-player {
+  .playlist-item {
+    cursor: pointer;
+  }
+  .playlist-item.selected {
+    color: rgb(255, 0, 0);
+  }
+}

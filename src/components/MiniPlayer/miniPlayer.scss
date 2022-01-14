@@ -1,8 +1,18 @@
 .mini-player {
   .playlist-item {
+    //display: none;
     cursor: pointer;
   }
   .playlist-item.selected {
     color: rgb(255, 0, 0);
+  }
+
+//  Music list
+  .playlist {
+    display: none;
+  }
+
+  .playlist.active {
+    display: block;
   }
 }

@@ -11,6 +11,7 @@
   );
   box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.2);
   border-radius: 0 10px 10px 0px;
+  width: 100%;
 
   // Logo
   &__logo-wrapper {
@@ -73,6 +74,36 @@
         background: 12% center / 1.2rem no-repeat
             url("../../assets/icons/list-icon.svg"),
           linear-gradient(145deg, #e6e6e6, #ffffff);
+      }
+    }
+
+    // Submenu
+    &-submenu {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 15px 10px 40px;
+      font-size: $main-font-size;
+      transition: all 0.2s ease-in-out;
+
+      color: #000000;
+      border-radius: 6px;
+
+      &.active{
+        transition: none;
+        background: 15% 45% / 1rem no-repeat
+        url("../../assets/icons/right-arrow-active.svg"),
+        linear-gradient(145deg, #e6e6e6, #ffffff);
+
+        &:hover{
+          background: 15% 45% / 1rem no-repeat
+          url("../../assets/icons/right-arrow-active.svg"),
+          linear-gradient(145deg, #e6e6e6, #ffffff);
+        }
+      }
+
+      &:hover {
+        background: #afc7eb;
       }
     }
   }

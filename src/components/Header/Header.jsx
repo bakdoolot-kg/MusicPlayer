@@ -8,7 +8,6 @@ function Header() {
       <div className="header__logo-wrapper">
         <span className="header__logo">B</span>
       </div>
-
       <NavList />
     </header>
   );

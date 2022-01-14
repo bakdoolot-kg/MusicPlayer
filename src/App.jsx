@@ -1,10 +1,20 @@
 import "./app.scss";
-import { Header } from "./components";
+import { Routes, Route } from "react-router-dom";
+import { Layout } from "./components";
+import { Home, NotFound } from "./pages";
+
+
 
 function App() {
   return (
     <div className="app">
-      <Header />
+        <Routes>
+            <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+                {/*<Route path="about" element={<About />} />*/}
+                <Route path="*" element={<NotFound />} />
+            </Route>
+        </Routes>
     </div>
   );
 }

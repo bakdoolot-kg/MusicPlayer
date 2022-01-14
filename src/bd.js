@@ -40,3 +40,23 @@ export const icons = [
     lib: "./assets/icons/list-icon.svg",
   },
 ];
+
+export const tracks = [
+  {
+    id: 0,
+    title: "Когда твоя девушка больна",
+    artist: "Виктор Цой",
+    image: "http://placeimg.com/640/480",
+    url: "./music/kogda_tvoya_devushka_bolna.mp3",
+  },
+  {
+    id: 1,
+    title: "Voice (Clarinet) & Piano",
+    artist: "Franz Schubert's Ständchen",
+    image: "http://placeimg.com/640/480",
+    url: "https://www.mfiles.co.uk/mp3-downloads/franz-schubert-standchen-serenade.mp3",
+    // url: "./music/Nick Le Funk - Leaving (The Lit Twins Remix).mp3",
+  },
+];
+
+export const musicsVk = [];

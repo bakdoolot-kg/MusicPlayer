@@ -1,40 +1,68 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { navLists } from "../../bd";
 import { submenu } from "../../bd";
 
 function NavList() {
-  const [list, setList] = useState(submenu);
+  const getInitialState = () => false;
+  const [list, setList] = useState(getInitialState);
 
-  function handleListClick() {
-    let listSubmenu = submenu.map((item, idx) => {
-      return (
-        <a href={item.url} key={idx + item.title}>
-          {item.title}
-        </a>
-      );
-    });
-    console.log(listSubmenu);
-  }
+  const handleListClick = () => {
+    setList((currentValue) => !currentValue);
+  };
+
   return (
     <ul className="header__list">
-      {navLists.map((link, idx) => {
-        return (
-          <li className="header__list-item">
-            <NavLink
-              to={link.url}
-              className="header__list-link"
-              data-nameIcon={link.title}
-              key={idx + link.title}
-              onClick={() => setList(handleListClick)}
-            >
-              {link.title}
-            </NavLink>
-          </li>
-        );
-      })}
+      <li className="header__list-item">
+        <NavLink
+          to="/"
+          className="header__list-link"
+          data-nameIcon={"Home"}
+          // onClick={() => setList(handleListClick)}
+        >
+          Home
+        </NavLink>
+      </li>
+      <li className="header__list-item">
+        <NavLink
+          to="library"
+          className="header__list-link"
+          data-nameIcon={"Library"}
+          onClick={() => setList(handleListClick)}
+        >
+          Library
+        </NavLink>
+      </li>
+
+      {list &&
+        submenu.map((item) => {
+          return (
+            <li className="header__list-item">
+              <NavLink to={item.url} className="header__list-submenu">
+                {item.title}
+              </NavLink>
+            </li>
+          );
+        })}
     </ul>
   );
+
+  // return (
+  //   <ul className="header__list">
+  //     {navLists.map((link, idx) => {
+  //       return (
+  //         <li className="header__list-item">
+  //           <NavLink
+  //             to={link.url}
+  //             className="header__list-link"
+  //             data-nameIcon={link.title}
+  //             key={idx + link.title}
+  //             onClick={() => setList(handleListClick)}
+  //           >
+  //             {link.title}
+  //           </NavLink>
+  //         </li>
+  //       );
+  //     })}
 }
 
 export default NavList;

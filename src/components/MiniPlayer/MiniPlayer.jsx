@@ -1,32 +1,70 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import "./miniPlayer.scss";
-import { Wave, PlayList, CoverMusic } from "../";
+import { Wave, PlayList } from "../";
 import { tracks } from "../../bd";
+import { connect } from "react-redux";
+import {
+  playMusic,
+  pauseMusic,
+  nextMusic,
+  prevMusic,
+} from "../../redux/actions";
+import { musicReducer, initialState } from "../../redux/musicReducer";
 
-export default function MiniPlayer() {
+function MiniPlayer() {
   const [selectedTrack, setSelectedTrack] = useState(tracks[0]);
-  const [list, setList] = useState(tracks);
+  const [state, dispatch] = useReducer(musicReducer, initialState);
+  // const [list, setList] = useState(tracks);
 
-  const handleList = () => {
-    setList(!list);
-  };
+  // const handleList = () => {
+  //   setList(!list);
+  // };
 
   return (
     <div className="mini-player">
-      <Wave url={selectedTrack.url} />
-      <button
-        className={list ? "playlist active" : "playlist"}
-        onClick={() => handleList}
+      <Wave url={selectedTrack.url} playing={state.play} />
+      <div
+        className="music-list"
+        // onClick={() => handleList}
       >
-        music list
-      </button>
-      <PlayList
-        tracks={tracks}
-        selectedTrack={selectedTrack}
-        setSelectedTrack={setSelectedTrack}
-        testState="asdasd"
-      />
+        <button>music list</button>
+        <div className="music-list__inner">
+          <PlayList
+            tracks={initialState.currentMusic}
+            selectedTrack={state}
+            setSelectedTrack={dispatch}
+          />
+        </div>
+      </div>
+
       <br />
     </div>
   );
 }
+
+function mapStateToProps(state) {
+  const { musicReducer } = state;
+  return {
+    play: musicReducer.play,
+    currentMusic: musicReducer.currentMusic,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onPlayMusic: () => {
+      return dispatch(playMusic());
+    },
+    onPauseMusic: () => {
+      return dispatch(pauseMusic());
+    },
+    onNextMusic: () => {
+      return dispatch(nextMusic());
+    },
+    onPrevMusic: () => {
+      return dispatch(prevMusic());
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MiniPlayer);

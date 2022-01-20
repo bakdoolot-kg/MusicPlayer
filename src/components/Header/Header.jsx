@@ -2,7 +2,7 @@ import "./header.scss";
 
 import { NavList } from "../";
 
-function Header() {
+export default function Header() {
   return (
     <header className="header">
       <div className="header__logo-wrapper">
@@ -13,4 +13,4 @@ function Header() {
   );
 }
 
-export default Header;
+// export default Header;

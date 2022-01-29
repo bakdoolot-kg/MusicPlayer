@@ -1,6 +1,5 @@
 import "./app.scss";
 import { Routes, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 import { Layout } from "./components";
 import { Home, NotFound } from "./pages";

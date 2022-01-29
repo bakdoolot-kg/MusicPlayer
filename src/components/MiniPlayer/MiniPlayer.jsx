@@ -1,71 +1,48 @@
-import React, { useState, useReducer } from "react";
+import React, {useState} from "react";
+import { Icon } from '@iconify/react';
 import "./miniPlayer.scss";
-import { Wave, PlayList } from "../";
-import { tracks } from "../../bd";
-import { connect } from "react-redux";
-import {
-  playMusic,
-  pauseMusic,
-  nextMusic,
-  prevMusic,
-} from "../../redux/actions";
-import { musicReducer, initialState } from "../../redux/musicReducer";
+import {Wave, PlayList, CoverMusic} from "../";
+import {tracks} from "../../bd";
 
 function MiniPlayer() {
-  const [selectedTrack, setSelectedTrack] = useState(tracks[0]);
+    const [selectedTrack, setSelectedTrack] = useState(tracks[0]);
+    const [drop, setDrop] = useState(false);
+    const [list, setList] = useState(true)
 
-  const [state, dispatch] = useReducer(musicReducer, initialState);
-  // const [list, setList] = useState(tracks);
+    const handleDrop = () => {
+        setDrop(!drop);
+    }
 
-  // const handleList = () => {
-  //   setList(!list);
-  // };
+    return (
+        <div className='mini-player-wrapper'>
+        <div className={drop ? 'mini-player':'mini-player-hidden'}>
 
-  return (
-    <div className="mini-player">
-      <Wave url={selectedTrack.url} playing={state.play} />
-      <div
-        className="music-list"
-        // onClick={() => handleList}
-      >
-        <button>music list</button>
-        <div className="music-list__inner">
-          <PlayList
-            tracks={initialState.currentMusic}
-            selectedTrack={state}
-            setSelectedTrack={dispatch}
-          />
+            <CoverMusic
+                tracks={tracks}
+                selectedTrack={selectedTrack}
+                setSelectedTrack={setSelectedTrack}
+            />
+            <Wave url={selectedTrack.url}/>
+            <div className="music-list">
+                <div className={list ? 'music-list__inner-hide' : 'music-list__inner'}>
+                    <PlayList
+                        tracks={tracks}
+                        selectedTrack={selectedTrack}
+                        setSelectedTrack={setSelectedTrack}
+                    />
+                </div>
+                <button className='music-list__btn' onClick={()=>{setList(!list)}}>music list</button>
+            </div>
+
+            {/*<br/>*/}
+
         </div>
-      </div>
-
-      <br />
-    </div>
-  );
+            <button onClick={() => {
+                setDrop(!drop)
+            }} className={drop ? 'mini-player__open' : 'mini-player__hidden'}>{drop ? <Icon icon="akar-icons:chevron-down" height="40" /> : <Icon icon="akar-icons:chevron-up" height="40" />}
+            </button>
+        </div>
+    );
 }
 
-function mapStateToProps(state) {
-  const { musicReducer } = state;
-  return {
-    play: musicReducer.play,
-    currentMusic: musicReducer.currentMusic,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    onPlayMusic: () => {
-      return dispatch(playMusic());
-    },
-    onPauseMusic: () => {
-      return dispatch(pauseMusic());
-    },
-    onNextMusic: () => {
-      return dispatch(nextMusic());
-    },
-    onPrevMusic: () => {
-      return dispatch(prevMusic());
-    },
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MiniPlayer);
+export default MiniPlayer;

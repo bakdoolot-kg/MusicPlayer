@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { submenu } from "../../bd";
+import { Icon } from "@iconify/react";
 
 function NavList() {
   const getInitialState = () => false;
@@ -12,23 +13,38 @@ function NavList() {
 
   return (
     <ul className="header__list">
-      <li className="header__list-item">
-        <NavLink
-          to="/"
-          className="header__list-link"
-          data-nameIcon={"Home"}
-          // onClick={() => setList(handleListClick)}
+      <li
+        className="header__list-item"
+        onClick={() => setList(handleListClick)}
+      >
+        <div
+          className="header__list-wrapper"
+          onClick={() => setList(handleListClick)}
         >
-          Home
-        </NavLink>
+          <NavLink to="/" className="header__list-link">
+            <Icon
+              className={"home-icon nav-icon"}
+              icon="akar-icons:home"
+              height={24}
+            />
+            Home
+          </NavLink>
+        </div>
       </li>
-      <li className="header__list-item">
+      <li
+        className="header__list-item"
+        onClick={() => setList(handleListClick)}
+      >
         <NavLink
           to="library"
           className="header__list-link"
           data-nameIcon={"Library"}
-          onClick={() => setList(handleListClick)}
         >
+          <Icon
+            className="library-icon nav-icon"
+            icon="iconoir:album-list"
+            height="23"
+          />
           Library
         </NavLink>
       </li>

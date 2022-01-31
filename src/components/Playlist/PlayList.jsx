@@ -1,6 +1,6 @@
-import React, { useReducer } from "react";
+import React from "react";
 import { tracks } from "../../bd";
-import { musicReducer, initialState } from "../../redux/musicReducer";
+// import { musicReducer, initialState } from "../../redux/musicReducer";
 
 const PlayList = (props) => {
   return (

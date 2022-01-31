@@ -1,15 +1,5 @@
-import React, { useState, useRef, useEffect, useReducer } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import WaveSurfer from "wavesurfer.js";
-import { connect } from "react-redux";
-import {
-  playMusic,
-  pauseMusic,
-  nextMusic,
-  prevMusic,
-} from "../../redux/actions";
-import { musicReducer } from "../../redux/musicReducer";
-import { initialState } from "../../redux/musicReducer";
-import { PAUSE, PLAY } from "../../redux/types";
 
 const formWaveSurferOptions = (ref) => ({
   container: ref,
@@ -27,15 +17,14 @@ const formWaveSurferOptions = (ref) => ({
   hideScrollbar: true,
 });
 
-function Wave({ url, playing }) {
+function Wave({ url }) {
   const waveformRef = useRef(null);
   const wavesurfer = useRef(null);
-  // const [playing, setPlay] = useState(false);
+  const [playing, setPlay] = useState(false);
   const [volume, setVolume] = useState(0.5);
-  const [state, dispatch] = useReducer(musicReducer, initialState);
 
   useEffect(() => {
-    // setPlay(state.play);
+    setPlay(!playing);
 
     const options = formWaveSurferOptions(waveformRef.current);
     wavesurfer.current = WaveSurfer.create(options);
@@ -54,9 +43,9 @@ function Wave({ url, playing }) {
 
   const handlePlayPause = () => {
     if (wavesurfer.current)
-      playing ? wavesurfer.current.playPause() : wavesurfer.current.playPause();
-    return state.play;
-    // wavesurfer.current.playPause();
+      // playing ? wavesurfer.current.playPause() : wavesurfer.current.playPause();
+      wavesurfer.current.playPause();
+    return playing;
   };
 
   const onVolumeChange = (e) => {
@@ -74,7 +63,7 @@ function Wave({ url, playing }) {
       <div id={"waveform"} ref={waveformRef}>
         <div className="controls">
           <button onClick={handlePlayPause}>
-            {state.play ? "Play" : "Pause"}
+            {playing ? "Play" : "Pause"}
           </button>
 
           <label htmlFor="{'volume'}">Volume</label>
@@ -95,28 +84,4 @@ function Wave({ url, playing }) {
   );
 }
 
-function mapStateToProps(state) {
-  const { musicReducer } = state;
-  return {
-    play: musicReducer.play,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    onPlayMusic: () => {
-      return dispatch(playMusic());
-    },
-    onPauseMusic: () => {
-      return dispatch(pauseMusic());
-    },
-    onNextMusic: () => {
-      return dispatch(nextMusic());
-    },
-    onPrevMusic: () => {
-      return dispatch(prevMusic());
-    },
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Wave);
+export default Wave;

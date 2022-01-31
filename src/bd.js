@@ -58,5 +58,3 @@ export const tracks = [
     // url: "./music/Nick Le Funk - Leaving (The Lit Twins Remix).mp3",
   },
 ];
-
-export const musicsVk = [];

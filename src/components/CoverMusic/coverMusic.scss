@@ -1,0 +1,17 @@
+.cover-music {
+  &__inner.selected {
+    display: block;
+  }
+
+  &__inner {
+    display: none;
+  }
+
+  &__img {
+    img {
+      border-radius: 15px;
+    }
+  }
+}
+
+

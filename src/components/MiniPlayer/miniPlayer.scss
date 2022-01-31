@@ -1,18 +1,236 @@
+.mini-player-wrapper {
+  transition: none .2s ease;
+}
+
+.mini-player-hidden {
+  display: none;
+}
+
 .mini-player {
+  transition: none .2s ease;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #F0ECE3;
+  color: #000;
+  padding: 20px 15px 20px 0;
+
+  a {
+    color: #142F43;
+    font-weight: 600;
+  }
+
+  //TODO Playlists =======
   .playlist-item {
-    //display: none;
     cursor: pointer;
   }
+
   .playlist-item.selected {
     color: rgb(255, 0, 0);
   }
 
-  //  Music list
-  .playlist {
-    // display: none;
+  //TODO  Music list ======
+  .mini-player__playlist {
+    .playlist {
+    }
   }
 
-  .playlist.active {
-    display: block;
+  //TODO Wave component ========
+  .wave {
+    flex-basis: 50%;
+
+    .wave__inner {
+      display: flex;
+      //justify-content: space-between;
+      width: 100%;
+
+      .waveform {
+        width: 100%;
+      }
+    }
+
+    div .controls {
+      margin: 0 30px 0 20px;
+      display: flex;
+      align-items: center;
+      //* Volume range
+      input[type="range"].volume-range {
+        // width: 100%;
+        margin: 2.5px 0;
+        background-color: transparent;
+        -webkit-appearance: none;
+      }
+
+      input[type="range"].volume-range:focus {
+        outline: none;
+      }
+
+      input[type="range"].volume-range::-webkit-slider-runnable-track {
+        background: rgba(0, 0, 0, 0.4);
+        border: 0;
+        border-radius: 10px;
+        width: 100%;
+        height: 10px;
+        cursor: pointer;
+      }
+
+      input[type="range"].volume-range::-webkit-slider-thumb {
+        margin-top: -2.5px;
+        width: 15px;
+        height: 15px;
+        background: #6374c8;
+        border: 2.5px solid rgba(99, 116, 200, 0.8);
+        border-radius: 10px;
+        cursor: pointer;
+        -webkit-appearance: none;
+      }
+
+      input[type="range"].volume-range:focus::-webkit-slider-runnable-track {
+        background: #7d7d7d;
+      }
+
+      input[type="range"].volume-range::-moz-range-track {
+        background: rgba(0, 0, 0, 0.4);
+        border: 0;
+        border-radius: 10px;
+        width: 100%;
+        height: 10px;
+        cursor: pointer;
+      }
+
+      input[type="range"].volume-range::-moz-range-thumb {
+        width: 15px;
+        height: 15px;
+        background: #6374c8;
+        border: 2.5px solid rgba(99, 116, 200, 0.8);
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      input[type="range"].volume-range::-ms-track {
+        background: transparent;
+        border-color: transparent;
+        border-width: 5.1px 0;
+        color: transparent;
+        width: 100%;
+        height: 10px;
+        cursor: pointer;
+      }
+
+      input[type="range"].volume-range::-ms-fill-lower {
+        background: #000000;
+        border: 0;
+        border-radius: 20px;
+      }
+
+      input[type="range"].volume-range::-ms-fill-upper {
+        background: rgba(0, 0, 0, 0.4);
+        border: 0;
+        border-radius: 20px;
+      }
+
+      input[type="range"].volume-range::-ms-thumb {
+        width: 15px;
+        height: 15px;
+        background: #6374c8;
+        border: 2.5px solid rgba(99, 116, 200, 0.8);
+        border-radius: 10px;
+        cursor: pointer;
+        margin-top: 0px;
+      }
+
+      input[type="range"].volume-range:focus::-ms-fill-lower {
+        background: rgba(0, 0, 0, 0.4);
+      }
+
+      input[type="range"].volume-range:focus::-ms-fill-upper {
+        background: #7d7d7d;
+      }
+
+      @supports (-ms-ime-align: auto) {
+        input[type="range"].volume-range {
+          margin: 0;
+        }
+      }
+
+      //* Play Pause icons
+      button {
+        cursor: pointer;
+        padding: 0;
+        background: none;
+        border: none;
+        max-width: 3rem;
+
+        svg {
+          max-width: 3rem;
+          opacity: 0.5;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  //TODO: Cover Music styles =======
+  .cover-music {
+    &__inner {
+      .cover-music__img {
+        img {
+          height: 150px;
+          width: 150px;
+        }
+      }
+    }
+  }
+
+  //TODO: Up & Down Button
+  &__hidden {
+    position: absolute;
+    right: 0;
+    bottom: 150px;
+    align-self: flex-start;
+    padding: 10px;
+
+    background: none;
+    border: none;
+  }
+  &__open {
+    position: absolute;
+    right: 0;
+    bottom: 150px;
+    padding: 10px;
+
+    background: none;
+    border: none;
+  }
+}
+
+
+//TODO: Music List
+.music-list {
+
+  &__inner {
+    transition: opacity 150ms ease-in-out;
+    opacity: 1;
+  }
+
+  &__inner-hide {
+    transition: opacity 150ms ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__btn {
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    background-color: #fff;
   }
 }

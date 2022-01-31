@@ -4,10 +4,10 @@
   color: #ffffff;
   max-width: 10rem;
   background: linear-gradient(
-    120deg,
-    #828dcb 0%,
-    rgba(130, 141, 203, 0.6) 74.3%,
-    rgba(182, 213, 233, 0.2) 116.08%
+                  120deg,
+                  #828dcb 0%,
+                  rgba(130, 141, 203, 0.6) 74.3%,
+                  rgba(182, 213, 233, 0.2) 116.08%
   );
   box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.2);
   border-radius: 0 10px 10px 0px;
@@ -27,55 +27,68 @@
   &__list {
     &-item {
       margin: 25px 15px;
+
+      &.active {
+        background: linear-gradient(145deg, #e6e6e6, #ffffff);
+      }
     }
 
     // NavLink ссылки
     &-link {
       display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 10px 15px 10px 40px;
+      align-items: flex-end;
+      padding: 10px 15px;
       font-size: $main-font-size;
       text-align: center;
       transition: all 0.2s ease-in-out;
-
       color: #000000;
       border-radius: 6px;
-    }
-
-    [data-nameIcon="Home"] {
-      background: 12% center / 1.2rem no-repeat
-        url("../../assets/icons/home-icon.svg");
 
       &:hover {
-        background: 12% center / 1.2rem no-repeat
-            url("../../assets/icons/home-icon.svg"),
-          #afc7eb;
+        border-radius: 6px;
+        background: #afc7eb;
       }
 
       &.active {
-        background: 12% center / 1.2rem no-repeat
-            url("../../assets/icons/home-icon.svg"),
-          linear-gradient(145deg, #e6e6e6, #ffffff);
+        background-color: #fff;
       }
     }
 
-    [data-nameIcon="Library"] {
-      background: 12% center / 1.2rem no-repeat
-        url("../../assets/icons/list-icon.svg");
-
-      &:hover {
-        background: 12% center / 1.2rem no-repeat
-            url("../../assets/icons/list-icon.svg"),
-          #afc7eb;
-      }
+    .nav-icon {
+      transition: all 120ms ease-in-out;
+      margin-right: 5px;
 
       &.active {
-        background: 12% center / 1.2rem no-repeat
-            url("../../assets/icons/list-icon.svg"),
-          linear-gradient(145deg, #e6e6e6, #ffffff);
+        background: linear-gradient(145deg, #e6e6e6, #ffffff);
       }
     }
+
+    .home-icon {
+      transition: color 120ms ease-in-out;
+      margin-right: 5px;
+
+      &.active {
+        background: linear-gradient(145deg, #e6e6e6, #ffffff);
+      }
+    }
+
+    // [data-nameIcon="Library"] {
+    //   background: 12% center / 1.2rem no-repeat
+    //     url("../../assets/icons/list-icon.svg");
+
+    //   &:hover {
+    //     background: 12% center / 1.2rem no-repeat
+    //         url("../../assets/icons/list-icon.svg"),
+    //       #afc7eb;
+    //   }
+
+    //   &.active {
+    //     background: 12% center / 1.2rem no-repeat
+    //         url("../../assets/icons/list-icon.svg"),
+    //       linear-gradient(145deg, #e6e6e6, #ffffff);
+    //   }
+    // }
 
     // Submenu
     &-submenu {
@@ -89,15 +102,13 @@
       color: #000000;
       border-radius: 6px;
 
-      &.active{
+      &.active {
         transition: none;
-        background: 15% 45% / 1rem no-repeat
-        url("../../assets/icons/right-arrow-active.svg"),
+        background: 15% 45% / 1rem no-repeat url("../../assets/icons/right-arrow-active.svg"),
         linear-gradient(145deg, #e6e6e6, #ffffff);
 
-        &:hover{
-          background: 15% 45% / 1rem no-repeat
-          url("../../assets/icons/right-arrow-active.svg"),
+        &:hover {
+          background: 15% 45% / 1rem no-repeat url("../../assets/icons/right-arrow-active.svg"),
           linear-gradient(145deg, #e6e6e6, #ffffff);
         }
       }

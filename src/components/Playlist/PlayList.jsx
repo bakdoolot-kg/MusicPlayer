@@ -1,19 +1,17 @@
 import React from "react";
-import { tracks } from "../../bd";
-// import { musicReducer, initialState } from "../../redux/musicReducer";
 
-const PlayList = (props) => {
+const PlayList = ({ tracks, selectedTrack, setSelectedTrack }) => {
   return (
     <div className="playlist">
       {tracks.map((track) => (
         <div
           key={track.id}
           className={
-            track.id === props.selectedTrack
+            track.id === selectedTrack.id
               ? "playlist-item selected"
               : "playlist-item"
           }
-          onClick={() => props.setSelectedTrack(track)}
+          onClick={() => setSelectedTrack(track)}
         >
           {track.artist}
           <span> - </span>

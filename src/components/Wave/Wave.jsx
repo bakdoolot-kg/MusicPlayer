@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import WaveSurfer from "wavesurfer.js";
+import { Icon } from "@iconify/react";
 
 const formWaveSurferOptions = (ref) => ({
   container: ref,
@@ -21,10 +22,11 @@ function Wave({ url }) {
   const waveformRef = useRef(null);
   const wavesurfer = useRef(null);
   const [playing, setPlay] = useState(false);
-  const [volume, setVolume] = useState(0.5);
+  const [volume, setVolume] = useState(0.3);
+  // const [state, dispatch] = useReducer(musicReducer, initialState);
 
   useEffect(() => {
-    setPlay(!playing);
+    // setPlay(false);
 
     const options = formWaveSurferOptions(waveformRef.current);
     wavesurfer.current = WaveSurfer.create(options);
@@ -42,10 +44,8 @@ function Wave({ url }) {
   }, [url]);
 
   const handlePlayPause = () => {
-    if (wavesurfer.current)
-      // playing ? wavesurfer.current.playPause() : wavesurfer.current.playPause();
-      wavesurfer.current.playPause();
-    return playing;
+    setPlay(!playing);
+    wavesurfer.current.playPause();
   };
 
   const onVolumeChange = (e) => {
@@ -60,13 +60,16 @@ function Wave({ url }) {
 
   return (
     <div className="wave">
-      <div id={"waveform"} ref={waveformRef}>
+      <div className="wave__inner">
         <div className="controls">
           <button onClick={handlePlayPause}>
-            {playing ? "Play" : "Pause"}
+            {!playing ? (
+              <Icon icon="ep:video-play" color={"#4055C0"} height={45} />
+            ) : (
+              <Icon icon="ep:video-pause" color={"#4055C0"} height={45} />
+            )}
           </button>
 
-          <label htmlFor="{'volume'}">Volume</label>
           <input
             className="volume-range"
             type="range"
@@ -79,9 +82,10 @@ function Wave({ url }) {
             defaultValue={volume}
           />
         </div>
+
+        <div id={"waveform"} ref={waveformRef} className={"waveform"} />
       </div>
     </div>
   );
 }
-
 export default Wave;

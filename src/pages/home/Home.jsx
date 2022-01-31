@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Wave, PlayList } from "../../components";
+import "./home.scss";
+import { Wave, PlayList, CoverMusic } from "../../components";
 import { tracks } from "../../bd";
 
 const Home = () => {
@@ -8,10 +9,15 @@ const Home = () => {
   return (
     <div className="home">
       <div className="home__wrapper">
-        <div className="home__wrapper-first">player</div>
-        <div className="home__wrapper-second">
-          text, background, video, image
+        <div className="home__wrapper-first">
+          <CoverMusic
+            tracks={tracks}
+            selectedTrack={selectedTrack}
+            setSelectedTrack={setSelectedTrack}
+          />
           <Wave url={selectedTrack.url} />
+        </div>
+        <div className="home__wrapper-second">
           <div className="music-list">
             <button>music list</button>
             <div className="music-list__inner">

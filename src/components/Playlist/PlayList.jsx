@@ -1,6 +1,6 @@
 import React from "react";
 
-const PlayList = ({tracks, selectedTrack, setSelectedTrack}) => {
+const PlayList = ({ tracks, selectedTrack, setSelectedTrack }) => {
   return (
     <div className="playlist">
       {tracks.map((track) => (

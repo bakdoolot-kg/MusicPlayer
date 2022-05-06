@@ -5,3 +5,5 @@ export { default as Layout } from "./Layout/Layout";
 export { default as Wave } from "./Wave/Wave";
 export { default as PlayList } from "./Playlist/PlayList";
 export { default as CoverMusic } from "./CoverMusic/CoverMusic";
+export { default as Login } from './login/Login'
+export {default as Loader} from './Loader/Loader'

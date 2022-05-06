@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { submenu } from "../../bd";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Button } from "@mui/material";
 import { Icon } from "@iconify/react";
+import { GrHomeRounded } from "react-icons/gr";
+import { MdLibraryMusic } from "react-icons/md";
+import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
+import { submenu } from "../../bd";
+import { MusicContext } from "../../index";
 
 function NavList() {
   const getInitialState = () => false;
   const [list, setList] = useState(getInitialState);
+  const { auth } = useContext(MusicContext);
+  const [user] = useAuthState(auth);
 
   const handleListClick = () => {
-    setList((currentValue) => !currentValue);
+    setList(!list);
   };
 
   return (
@@ -31,22 +39,24 @@ function NavList() {
           </NavLink>
         </div>
       </li>
-      <li
-        className="header__list-item"
-        onClick={() => setList(handleListClick)}
-      >
-        <NavLink
-          to="library"
-          className="header__list-link"
-          data-nameIcon={"Library"}
+      <li className="header__list-item">
+        <div
+          className="header__list-wrapper"
+          onClick={() => setList(handleListClick)}
         >
-          <Icon
-            className="library-icon nav-icon"
-            icon="iconoir:album-list"
-            height="23"
-          />
-          Library
-        </NavLink>
+          <NavLink
+            to="library"
+            className="header__list-link"
+            data-nameicon={"Library"}
+          >
+            <Icon
+              className="library-icon nav-icon"
+              icon="iconoir:album-list"
+              height="23"
+            />
+            Library
+          </NavLink>
+        </div>
       </li>
 
       {list &&
@@ -59,6 +69,12 @@ function NavList() {
             </li>
           );
         })}
+
+      <li className="header__list-item">
+        <Button onClick={() => auth.signOut()} size="small" variant="contained">
+          <ExitToAppOutlinedIcon />
+        </Button>
+      </li>
     </ul>
   );
 

@@ -2,16 +2,21 @@
 
 .header {
   color: #ffffff;
+
   max-width: 10rem;
   background: linear-gradient(
-                  120deg,
-                  #828dcb 0%,
-                  rgba(130, 141, 203, 0.6) 74.3%,
-                  rgba(182, 213, 233, 0.2) 116.08%
+    120deg,
+    #828dcb 0%,
+    rgba(130, 141, 203, 0.6) 74.3%,
+    rgba(182, 213, 233, 0.2) 116.08%
   );
   box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.2);
   border-radius: 0 10px 10px 0px;
   width: 100%;
+
+  & .active {
+    max-width: 10rem;
+  }
 
   // Logo
   &__logo-wrapper {
@@ -104,12 +109,14 @@
 
       &.active {
         transition: none;
-        background: 15% 45% / 1rem no-repeat url("../../assets/icons/right-arrow-active.svg"),
-        linear-gradient(145deg, #e6e6e6, #ffffff);
+        background: 15% 45% / 1rem no-repeat
+            url("../../assets/icons/right-arrow-active.svg"),
+          linear-gradient(145deg, #e6e6e6, #ffffff);
 
         &:hover {
-          background: 15% 45% / 1rem no-repeat url("../../assets/icons/right-arrow-active.svg"),
-          linear-gradient(145deg, #e6e6e6, #ffffff);
+          background: 15% 45% / 1rem no-repeat
+              url("../../assets/icons/right-arrow-active.svg"),
+            linear-gradient(145deg, #e6e6e6, #ffffff);
         }
       }
 
